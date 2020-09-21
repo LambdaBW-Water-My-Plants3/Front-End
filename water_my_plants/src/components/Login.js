@@ -3,6 +3,9 @@ import axios from 'axios'
 import * as yup from 'yup'
 import schema from './login-validation/formSchema'
 
+
+
+
 const initialValues = {
     username: '',
     password: '',
@@ -24,7 +27,7 @@ const Login = (props) => {
 
      const login = e => {
        e.preventDefault();
-       axios.post(' link here', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {
+       axios.post('https://watermyplantunit4.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {
          headers: {
            // btoa is converting our client id/client secret into base64
            Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
@@ -36,6 +39,7 @@ const Login = (props) => {
          localStorage.setItem('token', res.data.access_token);
          props.history.push('/');
        })
+       setCredentials(initialValues)
      }
      const inputChange = (name, value) => {
          validate(name, value)
@@ -70,6 +74,8 @@ const Login = (props) => {
              setDisabled(!valid)
          })
      },[credentials])
+
+
      return(
          <div className = "loginContainer">
             <form className = "loginForm" onSubmit={login}>
@@ -98,12 +104,14 @@ const Login = (props) => {
                 <div>{credentialErrors.username}</div>
                 <div>{credentialErrors.password}</div>
             </div>
-            <div className="submit">
+            <div className="buttons">
                 <button disabled={disabled}>Login</button>
+                <p>Don't have an account?</p><button>Sign Up Here</button>
             </div>   
             </form>
          </div>
      )
+     
     }
 
 
