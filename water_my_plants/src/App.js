@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
+import PlantPage from './components/PlantPage'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
+      <PlantPage />
     </div>
   );
 }
