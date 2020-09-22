@@ -3,6 +3,7 @@ import {Switch, Route, Link} from 'react-router-dom'
 import './App.css';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import Item from './components/Item'
 
 function App() {
   return (
