@@ -3,10 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +30,7 @@ function EditItem({ plants, updatePlants }) {
 
   const [editing, setEditing] = useState(false);
   const [plantToEdit, setPlantToEdit] = useState(initialPlantValues);
+  const [adding, setAdding] = useState(false);
 
   // action handlers
 
@@ -48,10 +48,14 @@ function EditItem({ plants, updatePlants }) {
     // delete request
   };
 
-  const change = e => {
-    e.persist()
-    setPlantToEdit({...plantToEdit, [e.target.name]: e.target.value})
-  }
+  const addPlant = () => {
+    // post request
+  };
+
+  const change = (e) => {
+    e.persist();
+    setPlantToEdit({ ...plantToEdit, [e.target.name]: e.target.value });
+  };
   return (
     <div>
       {plants.map((plant) => (
@@ -60,8 +64,8 @@ function EditItem({ plants, updatePlants }) {
           key={plant.plantid}
         >
           <p>{plant.nickname}</p>
-          <div style={{display: 'flex'}}>
-            <div onClick={() => editPlant(plant)} >
+          <div style={{ display: "flex" }}>
+            <div onClick={() => editPlant(plant)}>
               <IconButton aria-label="delete" color="primary">
                 <EditIcon fontSize="small" />
               </IconButton>
@@ -74,30 +78,64 @@ function EditItem({ plants, updatePlants }) {
           </div>
         </div>
       ))}
+      <Button color="primary" onClick={() => setAdding(true)}>
+        Add Plant
+      </Button>
       {editing && (
         <form onSubmit={savePlant}>
           <legend>Edit Plant:</legend>
-            <TextField
-              onChange={change}
-              name='species'
-              value={plantToEdit.species}
-              label='Species'
-            />
-            <TextField
-              onChange={change}
-              name='nickname'
-              value={plantToEdit.nickname}
-              label='nickname'
-            />
-            <TextField
-              onChange={change}
-              name='waterfrequency'
-              value={plantToEdit.waterfrequency}
-              label='water'
-            />
+          <TextField
+            onChange={change}
+            name="species"
+            value={plantToEdit.species}
+            label="Species"
+          />
+          <TextField
+            onChange={change}
+            name="nickname"
+            value={plantToEdit.nickname}
+            label="nickname"
+          />
+          <TextField
+            onChange={change}
+            name="waterfrequency"
+            value={plantToEdit.waterfrequency}
+            label="water"
+          />
           <div className="button-row">
-            <button type="submit">save</button>
-            <button onClick={() => setEditing(false)}>cancel</button>
+            <Button type="submit" color="secondary">
+              save
+            </Button>
+            <Button onClick={() => setEditing(false)}>cancel</Button>
+          </div>
+        </form>
+      )}
+      {adding && (
+        <form onSubmit={savePlant}>
+          <legend>Add Plant:</legend>
+          <TextField
+            onChange={change}
+            name="species"
+            value={plantToEdit.species}
+            label="Species"
+          />
+          <TextField
+            onChange={change}
+            name="nickname"
+            value={plantToEdit.nickname}
+            label="nickname"
+          />
+          <TextField
+            onChange={change}
+            name="waterfrequency"
+            value={plantToEdit.waterfrequency}
+            label="water"
+          />
+          <div className="button-row">
+            <Button type="submit" color="secondary">
+              add
+            </Button>
+            <Button onClick={() => setAdding(false)}>cancel</Button>
           </div>
         </form>
       )}
