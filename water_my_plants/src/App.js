@@ -4,9 +4,9 @@ import './App.css';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 
+
 function App() {
   return (
-    
     <div className="App">
       <button><Link to = '/login'>Login</Link></button>
       <button><Link to = '/signup'>SignUp</Link></button>
