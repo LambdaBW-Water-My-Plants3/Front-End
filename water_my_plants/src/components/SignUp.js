@@ -38,6 +38,7 @@ const SignUp = () => {
 		root: {
 			border: "1px solid #448aff",
 			borderRadius: "25px",
+			color: "black",
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "center",
