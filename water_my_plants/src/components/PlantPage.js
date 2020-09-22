@@ -13,6 +13,7 @@ function PlantPage() {
     axios
       .get("https://watermyplantunit4.herokuapp.com/plants/plants")
       .then((res) => {
+        console.log(res.data);
         setPlants(res.data);
       })
       .catch((err) => {
@@ -23,7 +24,7 @@ function PlantPage() {
   return (
     <div className="parent">
       <EditItem plants={plants} updatePlants={setPlants} />
-      <Plants plants={plants} />
+      <Plants plants={plants} updatePlants={setPlants} />
     </div>
   );
 }

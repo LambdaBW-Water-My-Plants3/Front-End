@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 
@@ -29,11 +31,12 @@ function EditItem({ plants, updatePlants }) {
 
   const [editing, setEditing] = useState(false);
   const [plantToEdit, setPlantToEdit] = useState(initialPlantValues);
+
   // action handlers
 
   const editPlant = (currentPlant) => {
     setEditing(true);
-    // setPlantToEdit(currentPlant);
+    setPlantToEdit(currentPlant);
   };
 
   const savePlant = (e) => {
@@ -49,17 +52,16 @@ function EditItem({ plants, updatePlants }) {
     e.persist()
     setPlantToEdit({...plantToEdit, [e.target.name]: e.target.value})
   }
-
   return (
     <div>
       {plants.map((plant) => (
         <div
           style={{ display: "flex", justifyContent: "space-between" }}
-          key={plant.id}
+          key={plant.plantid}
         >
           <p>{plant.nickname}</p>
           <div style={{display: 'flex'}}>
-            <div onClick={editPlant} >
+            <div onClick={() => editPlant(plant)} >
               <IconButton aria-label="delete" color="primary">
                 <EditIcon fontSize="small" />
               </IconButton>
@@ -74,29 +76,25 @@ function EditItem({ plants, updatePlants }) {
       ))}
       {editing && (
         <form onSubmit={savePlant}>
-          <legend>Edit Color:</legend>
-          <label>
-            Species:
-            <input
+          <legend>Edit Plant:</legend>
+            <TextField
               onChange={change}
+              name='species'
               value={plantToEdit.species}
+              label='Species'
             />
-          </label>
-          <label>
-            Nickname:
-            <input
+            <TextField
               onChange={change}
+              name='nickname'
               value={plantToEdit.nickname}
+              label='nickname'
             />
-          </label>
-          <label>
-            Water:
-            <input
+            <TextField
               onChange={change}
+              name='waterfrequency'
               value={plantToEdit.waterfrequency}
+              label='water'
             />
-          </label>
-
           <div className="button-row">
             <button type="submit">save</button>
             <button onClick={() => setEditing(false)}>cancel</button>

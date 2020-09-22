@@ -28,7 +28,7 @@ function Plants({ plants }) {
       }}
     >
       {plants.map((plant) => (
-        <Card className={classes.root}>
+        <Card key={plant.plantid} className={classes.root}>
           <CardActionArea>
             <CardMedia
               className={classes.media}
