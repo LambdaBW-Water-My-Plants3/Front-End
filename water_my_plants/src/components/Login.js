@@ -2,10 +2,21 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import * as yup from 'yup'
 import schema from './login-validation/formSchema'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom' 
+import styled from 'styled-components'
 
 
 
+const StyledContainer = styled.div ` 
+background-color: ${props => props.theme.primaryColor};
+padding: 10%;
+border-radius: 10px;
+color: ${props => props.theme.secondaryColor};
+`
+
+const StyledButtons = styled.button ` 
+text-decoration: none;
+`
 
 const initialValues = {
     username: '',
@@ -78,7 +89,7 @@ const Login = (props) => {
 
 
      return(
-        <div className = "loginContainer">
+        <StyledContainer className = "loginContainer">
         <form className = "loginForm" onSubmit={login}>
             <h1>Welcome Back</h1>
         <div className = "username">
@@ -106,11 +117,11 @@ const Login = (props) => {
             <div>{credentialErrors.password}</div>
         </div>
         <div className="buttons">
-            <button disabled={disabled}>Login</button>
-            <p>Don't have an account?</p><button><Link to = "/signup">Sign Up Here</Link></button>
+            <StyledButtons disabled={disabled}>Login</StyledButtons>
+            <p>Don't have an account?</p><StyledButtons><Link to = "/signup">Sign Up Here</Link></StyledButtons>
         </div>   
         </form>
-        </div>
+        </StyledContainer>
      )
      
     }
