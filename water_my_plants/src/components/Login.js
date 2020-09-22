@@ -14,8 +14,8 @@ border-radius: 10px;
 color: ${props => props.theme.secondaryColor};
 `
 
-const StyledButtons = styled.button ` 
-text-decoration: none;
+const StyledHeader = styled.h1 ` 
+color: ${props => props.theme.headerColor};
 `
 
 const initialValues = {
@@ -49,7 +49,7 @@ const Login = (props) => {
        .then(res => {
          console.log(res.data)
          localStorage.setItem('token', res.data.access_token);
-         props.history.push('/');
+         props.history.push('/item');
        })
        setCredentials(initialValues)
      }
@@ -91,7 +91,7 @@ const Login = (props) => {
      return(
         <StyledContainer className = "loginContainer">
         <form className = "loginForm" onSubmit={login}>
-            <h1>Welcome Back</h1>
+            <StyledHeader>Welcome Back! 🌱</StyledHeader>
         <div className = "username">
             <label>Username:
                 <input
@@ -117,8 +117,8 @@ const Login = (props) => {
             <div>{credentialErrors.password}</div>
         </div>
         <div className="buttons">
-            <StyledButtons disabled={disabled}>Login</StyledButtons>
-            <p>Don't have an account?</p><StyledButtons><Link to = "/signup">Sign Up Here</Link></StyledButtons>
+            <div disabled={disabled}><button>Login</button></div>
+            <p>Don't have an account?</p><div><Link to = "/signup"><button>Sign Up Here</button></Link></div>
         </div>   
         </form>
         </StyledContainer>
