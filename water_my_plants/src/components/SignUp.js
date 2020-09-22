@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Box, Button, createMuiTheme, TextField } from "@material-ui/core";
 import { withStyles, ThemeProvider } from "@material-ui/styles";
 // import * as yup from "yup";
 // import { yupResolver } from "@hookform/resolvers";
+import { Link } from "react-router-dom";
 import bgImg from "../images/littlePlant.jpg";
+import Axios from "axios";
 
 // const schema = yup.object().shape({
 // username: yup.string().required("Please enter a username"),
@@ -21,7 +23,16 @@ import bgImg from "../images/littlePlant.jpg";
 const SignUp = () => {
 	const { register, handleSubmit, errors } = useForm();
 
-	const onSubmit = (data) => console.log(data);
+	// const onSubmit = (data) => console.log(data);
+
+	const onSubmit = (data) => {
+		Axios.get("https://watermyplantunit4.herokuapp.com/signup", data)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
+	};
+	useEffect(() => {
+		onSubmit();
+	}, []);
 
 	const theme = createMuiTheme({
 		palette: {
@@ -112,7 +123,9 @@ const SignUp = () => {
 						Submit
 					</Button>
 				</form>
-				<p>Already a member? Sign In here!</p>
+				<p>
+					Already a member? <Link to="login">Sign In here!</Link>
+				</p>
 			</SignUpWrapper>
 		</ThemeProvider>
 	);
