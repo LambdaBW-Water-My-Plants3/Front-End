@@ -1,0 +1,4 @@
+.parent {
+    display: grid;
+    grid-template-columns: minmax(150px, 30%) 1fr;
+}
