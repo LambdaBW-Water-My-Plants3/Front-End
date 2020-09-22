@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import * as yup from 'yup'
 import schema from './login-validation/formSchema'
+import {Link} from 'react-router-dom'
 
 
 
@@ -77,39 +78,39 @@ const Login = (props) => {
 
 
      return(
-         <div className = "loginContainer">
-            <form className = "loginForm" onSubmit={login}>
-                <h1>Welcome Back</h1>
-            <div className = "username">
-                <label>Username:
-                    <input
-                        type="text"
-                        name="username"
-                        value = {credentials.username}
-                        onChange = {onChange}
-                    />
-                </label>
-            </div>
-            <div className="password">
-                <label>Password:
-                    <input
-                        type= "password"
-                        name="password"
-                        value={credentials.password}
-                        onChange = {onChange}
-                    />
-                </label>
-            </div> 
-            <div className = "errors">
-                <div>{credentialErrors.username}</div>
-                <div>{credentialErrors.password}</div>
-            </div>
-            <div className="buttons">
-                <button disabled={disabled}>Login</button>
-                <p>Don't have an account?</p><button>Sign Up Here</button>
-            </div>   
-            </form>
-         </div>
+        <div className = "loginContainer">
+        <form className = "loginForm" onSubmit={login}>
+            <h1>Welcome Back</h1>
+        <div className = "username">
+            <label>Username:
+                <input
+                    type="text"
+                    name="username"
+                    value = {credentials.username}
+                    onChange = {onChange}
+                />
+            </label>
+        </div>
+        <div className="password">
+            <label>Password:
+                <input
+                    type= "password"
+                    name="password"
+                    value={credentials.password}
+                    onChange = {onChange}
+                />
+            </label>
+        </div> 
+        <div className = "errors">
+            <div>{credentialErrors.username}</div>
+            <div>{credentialErrors.password}</div>
+        </div>
+        <div className="buttons">
+            <button disabled={disabled}>Login</button>
+            <p>Don't have an account?</p><button><Link to = "/signup">Sign Up Here</Link></button>
+        </div>   
+        </form>
+        </div>
      )
      
     }
