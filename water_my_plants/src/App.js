@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import { withStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/core";
+import Item from './components/Item'
 
 function App() {
 	const FormWrapper = withStyles({
