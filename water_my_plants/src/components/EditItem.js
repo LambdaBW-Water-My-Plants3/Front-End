@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -7,25 +6,14 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-}));
-
 const initialPlantValues = {
   nickname: "",
   species: "",
-  waterfrequency: "",
+  waterfrequency: ""
 };
 
-function EditItem({ plants, updatePlants }) {
-  // styles
-
-  const classes = useStyles();
-
+function EditItem({ user, plants, updatePlants }) {
+  
   // State
 
   const [editing, setEditing] = useState(false);
@@ -41,26 +29,80 @@ function EditItem({ plants, updatePlants }) {
 
   const savePlant = (e) => {
     e.preventDefault();
-    // put request
+    console.log(user);
+    const newPlant = {
+      nickname: plantToEdit.nickname,
+      species: plantToEdit.species,
+      waterfrequency: plantToEdit.waterfrequency,
+      user: {
+        userid: 4
+      }
+    }
+    axiosWithAuth()
+      .put(`/plants/plant/${plantToEdit.plantid}`, newPlant)
+      .then((res) => {
+        console.log(res);
+        setEditing(false);
+        updatePlants(
+          plants.map((plantItem) => {
+            if (plantItem.id === plantToEdit.id) {
+              return plantToEdit;
+            } else {
+              return plantItem;
+            }
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const deletePlant = (plant) => {
-    // delete request
+    axiosWithAuth()
+      .delete(`/plants/plant/delete/${plant.plantid}`)
+      .then(res => {
+        updatePlants(
+          plants.filter(item => {
+            return item.id !== plant.id
+          }))
+      })
+      .catch(err => {
+        console.log(err);
+      })
   };
 
-  const addPlant = () => {
-    // post request
+  const addPlant = e => {
+    e.preventDefault()
+    const newPlant = {
+      nickname: plantToEdit.nickname,
+      species: plantToEdit.species,
+      waterfrequency: plantToEdit.waterfrequency,
+      user: {
+        userid: 4
+      }
+    }
+    axiosWithAuth()
+      .post('/plants/plant', newPlant)
+      .then(res => {
+        console.log('POST RES', res);
+      })
+      .catch(err => {
+        console.log(err.message);
+      })
+    setPlantToEdit(initialPlantValues)
   };
 
   const change = (e) => {
     e.persist();
     setPlantToEdit({ ...plantToEdit, [e.target.name]: e.target.value });
   };
+  
   return (
     <div>
       {plants.map((plant) => (
         <div
-          style={{ display: "flex", justifyContent: "space-between" }}
+          style={{ display: "flex", justifyContent: "space-between", fontSize: '16px'}}
           key={plant.plantid}
         >
           <p>{plant.nickname}</p>
@@ -70,7 +112,7 @@ function EditItem({ plants, updatePlants }) {
                 <EditIcon fontSize="small" />
               </IconButton>
             </div>
-            <div>
+            <div onClick={() => deletePlant(plant)} >
               <IconButton aria-label="delete" color="primary">
                 <DeleteIcon fontSize="small" />
               </IconButton>
@@ -78,9 +120,7 @@ function EditItem({ plants, updatePlants }) {
           </div>
         </div>
       ))}
-      <Button color="primary" onClick={() => setAdding(true)}>
-        Add Plant
-      </Button>
+      <Button color="primary" onClick={() => setAdding(true)}>Add Plant</Button>
       {editing && (
         <form onSubmit={savePlant}>
           <legend>Edit Plant:</legend>
@@ -103,15 +143,13 @@ function EditItem({ plants, updatePlants }) {
             label="water"
           />
           <div className="button-row">
-            <Button type="submit" color="secondary">
-              save
-            </Button>
+            <Button type="submit" color="secondary">save</Button>
             <Button onClick={() => setEditing(false)}>cancel</Button>
           </div>
         </form>
       )}
       {adding && (
-        <form onSubmit={savePlant}>
+        <form onSubmit={addPlant}>
           <legend>Add Plant:</legend>
           <TextField
             onChange={change}
@@ -132,9 +170,7 @@ function EditItem({ plants, updatePlants }) {
             label="water"
           />
           <div className="button-row">
-            <Button type="submit" color="secondary">
-              add
-            </Button>
+            <Button type="submit" color="secondary">add</Button>
             <Button onClick={() => setAdding(false)}>cancel</Button>
           </div>
         </form>
