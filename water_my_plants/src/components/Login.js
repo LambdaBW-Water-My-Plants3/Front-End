@@ -38,19 +38,19 @@ color: ${props => props.theme.secondaryColor};
 `
 
 const initialValues = {
-    username: '',
-    password: '',
-}
+  username: "",
+  password: "",
+};
 
 const initialErrors = {
-    username: '',
-    password: '',
-}
+  username: "",
+  password: "",
+};
 
-
-const initialDisabled = true
+const initialDisabled = true;
 
 const Login = (props) => {
+
     const [credentials, setCredentials] = useState(initialValues);
     const [credentialErrors, setCredentialErrors] = useState(initialErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
@@ -151,4 +151,4 @@ const Login = (props) => {
     }
 
 
-export default Login
+export default Login;

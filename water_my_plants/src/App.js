@@ -5,6 +5,9 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import { withStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/core";
+import PrivateRoute from "./components/PrivateRoute";
+import PlantPage from "./components/PlantPage";
+import UserPage from "./components/UserPage";
 import Item from './components/Item'
 
 function App() {
@@ -34,6 +37,8 @@ function App() {
 							<SignUp />
 						</FormWrapper>
 					</Route>
+					<PrivateRoute exact path='/plantpage' component={PlantPage} />
+					<PrivateRoute exact path='/userpage' component={UserPage} />
 				</Switch>
 			</header>
 		</div>
