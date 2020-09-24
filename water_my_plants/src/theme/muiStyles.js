@@ -26,9 +26,9 @@ export const SignUpWrapper = withStyles({
 		width: "70%",
 		maxWidth: "650px",
 		height: "75vh",
-		overflowY: "scroll",
+		maxHeight: "690px",
 		padding: [[0, 20, 30]],
-		backgroundImage: `linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.2)), url(${bgImg})`,
+		backgroundImage: `linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.5)), url(${bgImg})`,
 		backgroundPosition: "center",
 	},
 })(Box);
@@ -44,7 +44,7 @@ export const FormWrapper = withStyles({
 export const NavWrapper = withStyles({
 	root: {
 		display: "flex",
-		padding: [[0, 10]],
+		padding: [[10, 20]],
 		justifyContent: "space-between",
 		alignItems: "center",
 		color: "white",
@@ -52,5 +52,8 @@ export const NavWrapper = withStyles({
 		backgroundPosition: "center",
 		backgroundRepeat: "no-repeat",
 		backgroundSize: "cover",
+		"& .MuiTypography-root": {
+			fontFamily: "Alegreya Sans SC, sans-serif",
+		},
 	},
 })(Box);

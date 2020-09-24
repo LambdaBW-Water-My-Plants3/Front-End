@@ -37,7 +37,11 @@ const SignUp = () => {
 						<TextField
 							name="username"
 							label="Username"
-							inputRef={register({ required: true, minLength: 2 })}
+							inputRef={register({
+								required: true,
+								minLength: 2,
+								pattern: /^[a-zA-Z0-9]+$/,
+							})}
 							required
 							color="primary"
 							fullWidth
@@ -45,15 +49,17 @@ const SignUp = () => {
 							variant="outlined"
 							placeholder="Enter a username"
 							helperText={
-								errors.username?.type === "minLength" &&
-								"Username is too short! Please enter a valid username."
+								(errors.username?.type === "minLength" &&
+									"Username is too short! Please enter a valid username.") ||
+								(errors.username?.type === "pattern" &&
+									"Username may only contain alphanumeric characters! Please enter a valid username.")
 							}
 						/>
 						<TextField
 							name="password"
 							label="Password"
 							type="password"
-							inputRef={register({ required: true })}
+							inputRef={register({ required: true, minLength: 5 })}
 							required
 							color="primary"
 							fullWidth
