@@ -22,6 +22,17 @@ color: red;
 font-size: 16px;
 `
 
+function UsernameInfo() {
+    const username = document.getElementById('username')
+    username.style.backgroundColor = 'lightblue'
+}
+
+function PasswordInfo (){
+    const username = document.getElementById('password')
+    username.style.backgroundColor = 'lightblue'
+}
+
+
 const SignUp = styled.h4 ` 
 color: ${props => props.theme.secondaryColor};
 `
@@ -103,6 +114,8 @@ const Login = (props) => {
         <div className = "username">
             <label>Username:
                 <input
+                    id = "username"
+                    onClick = {UsernameInfo}
                     type="text"
                     name="username"
                     value = {credentials.username}
@@ -113,6 +126,8 @@ const Login = (props) => {
         <div className="password">
             <label>Password:
                 <input
+                    id = "password"
+                    onClick = {PasswordInfo}
                     type= "password"
                     name="password"
                     value={credentials.password}
