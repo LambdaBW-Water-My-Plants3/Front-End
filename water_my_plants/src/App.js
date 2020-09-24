@@ -18,7 +18,7 @@ function App() {
 			<header className="App-header">
 				<Buttons />
 				<Switch>
-					<Route path="/login">
+					<Route path="/">
 						<Login />
 					</Route>
 
@@ -29,6 +29,7 @@ function App() {
 					</Route>
 					<PrivateRoute exact path='/plantpage' component={PlantPage} />
 					<PrivateRoute exact path='/userpage' component={UserPage} />
+					<PrivateRoute exact path='/item' component={Item} />
 				</Switch>
 			</header>
 		</div>
