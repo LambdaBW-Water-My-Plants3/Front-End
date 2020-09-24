@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 
-
 const StyledContainer = styled.div ` 
 background-color: ${props => props.theme.primaryColor};
 padding: 10%;
@@ -16,6 +15,15 @@ color: ${props => props.theme.secondaryColor};
 
 const StyledHeader = styled.h1 ` 
 color: ${props => props.theme.headerColor};
+`
+
+const ErrorStyles = styled.div ` 
+color: red;
+font-size: 16px;
+`
+
+const SignUp = styled.h4 ` 
+color: ${props => props.theme.secondaryColor};
 `
 
 const initialValues = {
@@ -113,14 +121,15 @@ const Login = (props) => {
             </label>
         </div> 
         <div className = "errors">
-            <div>{credentialErrors.username}</div>
-            <div>{credentialErrors.password}</div>
+            <ErrorStyles className = "errors">{credentialErrors.username}</ErrorStyles>
+            <ErrorStyles className = "errors">{credentialErrors.password}</ErrorStyles>
         </div>
         <div className="buttons">
-            <div disabled={disabled}><button>Login</button></div>
-            <p>Don't have an account?</p><div><Link to = "/signup"><button>Sign Up Here</button></Link></div>
+            <div><button disabled={disabled}>Login</button></div>
+            <p>Don't have an account?</p><div><Link to = "/signup"><SignUp>Sign Up Here</SignUp></Link></div>
         </div>   
         </form>
+        
         </StyledContainer>
      )
      

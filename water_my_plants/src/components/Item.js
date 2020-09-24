@@ -28,7 +28,21 @@ border: 5px solid ${prop => prop.theme.secondaryColor};
 border-radius: 10px;
 margin-top: 5%;
 `
+function ImageSize() {
+    const image = document.getElementsByClassName("plantimage")
+    for (let i = 0; i < image.length; i++){
+    image[i].style.height = "700px"
+    image[i].style.width = "100%"
+    }
+}
 
+function ImageSizeLeave() {
+    const image = document.getElementsByClassName("plantimage")
+    for (let i = 0; i< image.length; i++ ){
+        image[i].style.height = "400px"
+        image[i].style.width = "80%"
+    }
+}
 
 export default function Item () {
     const [plantData, setPlantData] = useState([])
@@ -44,15 +58,16 @@ export default function Item () {
             console.log("sorry no plants", error)
         })
     },[])
+    
 
     return(
         <StyledContainer className = "plantList">  
             {plantData.map(items => (
-               <StyledItems id = "plantContainer">
+               <StyledItems>
                <h2>{items.nickname}</h2>
                <h3>{items.species}</h3>
                <h3>{items.waterfrequency}</h3>
-               <StyledImages src = {items.imgurl} alt = "random plant"/>
+            <StyledImages onMouseOver = {ImageSize} onMouseLeave = {ImageSizeLeave} className = "plantimage" src = {items.imgurl} alt = "random plant"/>
                </StyledItems >
             ))}
         </StyledContainer>
