@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 
-
 const StyledContainer = styled.div ` 
 background-color: ${props => props.theme.primaryColor};
 padding: 10%;
@@ -14,8 +13,28 @@ border-radius: 10px;
 color: ${props => props.theme.secondaryColor};
 `
 
-const StyledButtons = styled.button ` 
-text-decoration: none;
+const StyledHeader = styled.h1 ` 
+color: ${props => props.theme.headerColor};
+`
+
+const ErrorStyles = styled.div ` 
+color: red;
+font-size: 16px;
+`
+
+function UsernameInfo() {
+    const username = document.getElementById('username')
+    username.style.backgroundColor = 'lightblue'
+}
+
+function PasswordInfo (){
+    const username = document.getElementById('password')
+    username.style.backgroundColor = 'lightblue'
+}
+
+
+const SignUp = styled.h4 ` 
+color: ${props => props.theme.secondaryColor};
 `
 
 const initialValues = {
@@ -49,7 +68,7 @@ const Login = (props) => {
        .then(res => {
          console.log(res.data)
          localStorage.setItem('token', res.data.access_token);
-         props.history.push('/');
+         props.history.push('/item');
        })
        setCredentials(initialValues)
      }
@@ -91,10 +110,12 @@ const Login = (props) => {
      return(
         <StyledContainer className = "loginContainer">
         <form className = "loginForm" onSubmit={login}>
-            <h1>Welcome Back</h1>
+            <StyledHeader>Welcome Back! 🌱</StyledHeader>
         <div className = "username">
             <label>Username:
                 <input
+                    id = "username"
+                    onClick = {UsernameInfo}
                     type="text"
                     name="username"
                     value = {credentials.username}
@@ -105,6 +126,8 @@ const Login = (props) => {
         <div className="password">
             <label>Password:
                 <input
+                    id = "password"
+                    onClick = {PasswordInfo}
                     type= "password"
                     name="password"
                     value={credentials.password}
@@ -113,14 +136,15 @@ const Login = (props) => {
             </label>
         </div> 
         <div className = "errors">
-            <div>{credentialErrors.username}</div>
-            <div>{credentialErrors.password}</div>
+            <ErrorStyles className = "errors">{credentialErrors.username}</ErrorStyles>
+            <ErrorStyles className = "errors">{credentialErrors.password}</ErrorStyles>
         </div>
         <div className="buttons">
-            <StyledButtons disabled={disabled}>Login</StyledButtons>
-            <p>Don't have an account?</p><StyledButtons><Link to = "/signup">Sign Up Here</Link></StyledButtons>
+            <div><button disabled={disabled}>Login</button></div>
+            <p>Don't have an account?</p><div><Link to = "/signup"><SignUp>Sign Up Here</SignUp></Link></div>
         </div>   
         </form>
+        
         </StyledContainer>
      )
      
