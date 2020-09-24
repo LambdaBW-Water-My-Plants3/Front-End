@@ -8,6 +8,7 @@ import { Box } from "@material-ui/core";
 import PrivateRoute from "./components/PrivateRoute";
 import PlantPage from "./components/PlantPage";
 import UserPage from "./components/UserPage";
+import Item from './components/Item'
 
 function App() {
 	const FormWrapper = withStyles({
