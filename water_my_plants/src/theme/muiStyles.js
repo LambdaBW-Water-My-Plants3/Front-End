@@ -1,5 +1,6 @@
 import { withStyles } from "@material-ui/styles";
-import { Box, createMuiTheme } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 import bgImg from "../images/littlePlant.jpg";
 import navBanner from "../images/navBanner.jpg";
 
