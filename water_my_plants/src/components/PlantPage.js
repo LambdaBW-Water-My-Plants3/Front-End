@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 import EditItem from "./EditItem";
 import Plants from "./Plants";
 
@@ -8,13 +8,14 @@ import "../css/plantpage.css";
 function PlantPage() {
   // State
   const [plants, setPlants] = useState([]);
+  const [user, setUser] = useState([])
 
   useEffect(() => {
-    axios
-      .get("https://watermyplantunit4.herokuapp.com/plants/plants")
+    axiosWithAuth()
+      .get("https://watermyplantunit4.herokuapp.com/users/getuserinfo")
       .then((res) => {
-        console.log(res.data);
-        setPlants(res.data);
+        setPlants(res.data.plants);
+        setUser(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -23,7 +24,7 @@ function PlantPage() {
 
   return (
     <div className="parent">
-      <EditItem plants={plants} updatePlants={setPlants} />
+      <EditItem user={user} plants={plants} updatePlants={setPlants} />
       <Plants plants={plants} updatePlants={setPlants} />
     </div>
   );
