@@ -1,37 +1,32 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+<<<<<<< HEAD
+import { FormWrapper } from "./theme/muiStyles";
+import NavBar from "./components/NavBar";
+import Buttons from "./components/OnboardButtons";
+=======
 import { withStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/core";
 import PrivateRoute from "./components/PrivateRoute";
 import PlantPage from "./components/PlantPage";
 import UserPage from "./components/UserPage";
 import Item from './components/Item'
+>>>>>>> 8c0b0444c4aa398a3d131fbded29e6db583bab6e
 
 function App() {
-	const FormWrapper = withStyles({
-		root: {
-			display: "flex",
-			justifyContent: "center",
-			alignItems: "center",
-			height: "100vh",
-		},
-	})(Box);
 	return (
 		<div className="App">
-			<button>
-				<Link to="/login">Login</Link>
-			</button>
-			<button>
-				<Link to="/signup">SignUp</Link>
-			</button>
+			<NavBar />
 			<header className="App-header">
+				<Buttons />
 				<Switch>
 					<Route path="/login">
 						<Login />
 					</Route>
+
 					<Route path="/signup">
 						<FormWrapper>
 							<SignUp />
