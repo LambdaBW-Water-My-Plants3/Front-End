@@ -35,7 +35,7 @@ function EditItem({ user, plants, updatePlants }) {
       species: plantToEdit.species,
       waterfrequency: plantToEdit.waterfrequency,
       user: {
-        userid: 4
+        userid: user.userid
       }
     }
     axiosWithAuth()
@@ -79,7 +79,7 @@ function EditItem({ user, plants, updatePlants }) {
       species: plantToEdit.species,
       waterfrequency: plantToEdit.waterfrequency,
       user: {
-        userid: 4
+        userid: user.userid
       }
     }
     axiosWithAuth()
