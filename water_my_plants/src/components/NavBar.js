@@ -50,7 +50,7 @@ const NavBar = () => {
 			<Hidden smDown>
 				<Typography variant="h4">Water My Plants</Typography>
 				{options.map((option) => (
-					<Typography key={option} variant="h6">
+					<Typography key={option} variant="h5">
 						{option}
 					</Typography>
 				))}

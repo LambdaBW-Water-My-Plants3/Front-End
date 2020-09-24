@@ -24,7 +24,7 @@ export const SignUpWrapper = withStyles({
 		justifyContent: "center",
 		minWidth: "250px",
 		width: "70%",
-		maxWidth: "650px",
+		maxWidth: "800px",
 		height: "75vh",
 		maxHeight: "690px",
 		padding: [[0, 20, 30]],
