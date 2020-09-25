@@ -25,19 +25,19 @@ const NavBar = () => {
 	const options = [
 		{
 			name: "Home",
-			link: "https://nervous-cray-0ff390.netlify.app//index",
+			link: "https://nervous-cray-0ff390.netlify.app/index",
 		},
 		{
 			name: "Articles",
-			link: "https://nervous-cray-0ff390.netlify.app//articles",
+			link: "https://nervous-cray-0ff390.netlify.app/articles",
 		},
 		{
 			name: "Environment",
-			link: "https://nervous-cray-0ff390.netlify.app//environment",
+			link: "https://nervous-cray-0ff390.netlify.app/environment",
 		},
 		{
 			name: "Contact",
-			link: "https://nervous-cray-0ff390.netlify.app//contact",
+			link: "https://nervous-cray-0ff390.netlify.app/contact",
 		},
 		{
 			name: "Login",
