@@ -18,17 +18,19 @@ function App() {
 			<header className="App-header">
 				<Buttons />
 				<Switch>
-					<Route path="/login">
-						<Login />
-					</Route>
 
 					<Route path="/signup">
 						<FormWrapper>
 							<SignUp />
 						</FormWrapper>
 					</Route>
-					<PrivateRoute exact path="/plantpage" component={PlantPage} />
-					<PrivateRoute exact path="/userpage" component={UserPage} />
+					<PrivateRoute exact path='/plantpage' component={PlantPage} />
+					<PrivateRoute exact path='/userpage' component={UserPage} />
+					<PrivateRoute exact path='/item' component={Item} />
+					<Route path="/">
+						<Login />
+					</Route>
+		
 				</Switch>
 			</header>
 		</div>
