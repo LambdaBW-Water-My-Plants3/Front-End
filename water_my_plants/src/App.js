@@ -9,7 +9,7 @@ import Buttons from "./components/OnboardButtons";
 import PrivateRoute from "./components/PrivateRoute";
 import PlantPage from "./components/PlantPage";
 import UserPage from "./components/UserPage";
-import Item from './components/Item'
+import Item from "./components/Item";
 
 function App() {
 	return (

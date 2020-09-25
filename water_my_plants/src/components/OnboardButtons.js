@@ -1,5 +1,9 @@
-import { Button, makeStyles, ThemeProvider } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
+import Button from "@material-ui/core/Button";
+import {
+	makeStyles,
+	ThemeProvider,
+	withStyles,
+} from "@material-ui/core/styles";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { primaryTheme } from "../theme/muiStyles";

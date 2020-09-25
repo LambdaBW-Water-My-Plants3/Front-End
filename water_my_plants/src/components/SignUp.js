@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button, TextField } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import { ThemeProvider } from "@material-ui/styles";
 import { NavLink, Redirect } from "react-router-dom";
 import Axios from "axios";
